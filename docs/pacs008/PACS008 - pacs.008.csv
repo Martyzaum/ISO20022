@@ -1,0 +1,134 @@
+Nível,Nome do Elemento <XML Tag>,Nome no Brasil,Mult. ISO,Mult. Brasil,OR Brasil,Tipo Base,Tamanho no Brasil,Definição,Comentários,Regra para o Brasil
+0, <FIToFICstmrCdtTrf>,,[1..1],[1..1],,±,,,Código da mensagem,
+1,GroupHeader <GrpHdr>,,[1..1],[1..1],,±,,Common characteristics for all individual transactions included in the message,Conjunto de elementos do cabeçalho da mensagem,
+2,    MessageIdentification <MsgId>,idMensagem,[1..1],[1..1],,Text,32 caracteres alfanuméricos,"Definition: Point to point reference, as assigned by the instructing party, and sent to the next party in the chain to unambiguously identify the message.
+Usage: The instructing party has to make sure that MessageIdentification is unique per instructed party for a pre-agreed period.",Identificação única de cada mensagem enviada,"Deve ser preenchido no formato padrão Mxxxxxxxxkkkkkkkkkkkkkkkkkkkkkkk (32 caracteres; ""case sensitive"", isso é, diferencia letras maiúsculas e minúsculas). Considerando que:
+-  M: fixo (1 caractere); 
+- xxxxxxxx: ISPB do emissor da mensagem  (8 caracteres alfanuméricos [0-9A-Z]{8});
+- kkkkkkkkkkkkkkkkkkkkkkk:  23 caracteres alfanuméricos [a-z|A-Z|0-9]{23};
+O participante direto do SPI deve garantir que o <MsgId> gerado por ele seja único, não se repetindo em qualquer outra mensagem enviada ao sistema."
+2,    CreationDateTime <CreDtTm>,dataHoraCriacaoParaEmissao,[1..1],[1..1],,DateTime,YYYY-MM-DD'T'hh:mm:ss.sss'Z',Date and time at which the message was created.,"Data e hora de criação da mensagem pelo participante durante o processo de emissão ao sistema de liquidação, ou data e hora de criação da mensagem pelo sistema de liquidação durante o processo de emissão ao participante.",Deve ser preenchido no formato padrão UTC (YYYY-MM-DD'T'hh:mm:ss.sss'Z')
+2,    NumberOfTransactions <NbOfTxs>,quantidadeTransacoes,[1..1],[1..1],,Numeric,Máximo 15 caracteres numéricos,Number of individual transactions contained in the message,Quantidade de instruções de pagamento (transações) incluídas na mensagem.,"Campo obrigatório deve ser preenchido com o valor maior ou igual a ""1""  (NbOfTxs >=1)."
+2,    SettlementInformation <SttlmInf>,,[1..1],[1..1],,±,,,,
+3,        SettlementMethod <SttlmMtd>,metodoLiquidacao,[1..1],[1..1],,CodeSet,4 caracteres alfanuméricos,Method used to settle the (batch of) payment instructions.,Conjunto de Elementos para indicar o Método usado para liquidar as instruções de pagamento.,Campo obrigatório deve ser preenchido com a opção estabelecida na tabela de domínios.
+2,    PaymentTypeInformation <PmtTpInf>,,[0..1],[1..1],,±,,,,
+3,        InstructionPriority <InstrPrty>,prioridadePagamento,[0..1],[1..1],,CodeSet,4 caracteres alfanuméricos,Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction.,Conjunto de Elementos usado para Indicadar liquidação prioritária ou não prioritária.,Deve ser preenchido com uma das opções estabelecidas na tabela de domínios.
+3,        ServiceLevel <SvcLvl>,,[0..*],[1..1],,±,,Agreement under which or rules under which the transaction should be processed.,,
+4,            Proprietary <Prtry>,tipoPrioridadePagamento,[1..1],[1..1],,CodeSet,6 caracteres alfanuméricos,"Specifies a pre-agreed service or level of service between the parties, as a proprietary code.",Conjunto de elementos usado para especificar o tipo de transação prioritária ou não prioritária.,"Campo obrigatório, deve ser preenchido com uma das opções estabelecidas na tabela de domínios.
+Se <InstrPrty> for preenchido com o domínio 'HIGH', esse campo deve ser preenchido com o domínio 'PAGPRI';
+
+Se <InstrPrty> for preenchido com o domínio 'NORM', esse campo deve ser preenchido com o domínio 'PAGFRD', ou o domínio 'PAGAGD'."
+1,CreditTransferTransactionInformation <CdtTrfTxInf>,,[1..*],[1..*],,±,,Set of elements providing information specific to the individual credit transfer(s).,Conjunto de elementos que fornecem informações específicas para as transferências individuais de crédito.,"Campo Obrigatório.
+Para tipoPrioridadePagamento igual a PAGPRI ou PAGFRD: [1..10];
+Para tipoPrioridadePagamento igual a PAGAGD: [1..500]."
+2,    PaymentIdentification <PmtId>,,[1..1],[1..1],,±,,Set of elements used to reference a payment instruction.TransactionIdentification or UETR must be present. Both may be present,Conjunto de elementos usados para referenciar uma instrução de pagamento.,
+3,        EndToEndIdentification <EndToEndId>,idFimAFim,[1..1],[1..1],,Text,32 caracteres alfanuméricos,"Unique identification, as assigned by the initiating party, to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.",Identificação única do evento. Esse número é usado em toda a cadeia de mensagens de uma instrução de pagamento.,"Deve ser preenchido no formato padrão ExxxxxxxxyyyyMMddHHmmkkkkkkkkkkk (32 caracteres; case sensitive, isso é, diferencia letras maiúsculas e minúsculas), sendo:
+-  E: fixo (1 caractere); 
+- xxxxxxxx:  identificação do agente que gerou o <EndToEndId>, podendo ser: o ISPB do participante direto, o ISPB do participante indireto ou os 8 primeiros dígitos do CNPJ do iniciador de pagamento  (8 caracteres alfanuméricos [0-9A-Z]{8});
+- yyyyMMddHHmm: data, hora e minuto (12 caracteres), seguindo o horário UTC, da submissão da ordem de pagamento, caso a liquidação seja prioritária, ou prevista para o envio da ordem ao sistema de liquidação, caso seja realizado um agendamento. Para ordens prioritárias e não prioritárias, aceita-se o preenchimento, pelo agente que gerou o <EndToEndId>, com uma tolerância máxima de 12 horas, para o futuro e para o passado, em relação ao horário efetivo de processamento da ordem pelo SPI; 
+- kkkkkkkkkkk:  sequencial criado pelo agente que gerou o <EndToEndId>  (11 caracteres alfanuméricos [a-z|A-Z|0-9]{11}). Deve ser único dentro de cada ""yyyyMMddHHmm"".
+                               
+Admite-se que o <EndToEndId> seja gerado pelo participante direto, pelo participante indireto ou pelo iniciador de pagamento. Ele deve ser único, não podendo ser repetido em qualquer outra operação enviada ao SPI."
+3,        TransactionIdentification <TxId>,idConciliacaoRecebedor,[0..1],[0..1],,Text,Máximo 35 caracteres alfanuméricos,"Unique identification, as assigned by the first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain.",Identificação única da transação.,"Regra de preenchimento:
+- Se o campo formaDeIniciacao for igual a QRES, deverá ser preenchido com o <TxId> do QR Code estático sempre que o QR Code estático possuir um <TxId>. Caso seja preenchido, o <TxId> deve conter até 25 caracteres alfanuméricos ([a-z|A-Z|0-9]). Caso o QR Code estático não possua <TxId>, este campo não deverá ser preenchido.
+- Se o campo formaDeIniciacao for igual a QRDN ou APDN, será obrigatório seu preenchimento com o <TxId> do payload JSON do QR Code dinâmico.O <TxId> deve conter entre 26 e 35 caracteres alfanuméricos ([a-z|A-Z|0-9]).
+ - Se o campo formaDeIniciacao for igual a INIC, será obrigatório seu preenchimento com o <TxId> recebido por meio do serviço de iniciação de transação de pagamento, que deve conter até 25 caracteres alfanuméricos ([a-z|A-Z|0-9]).
+- Se o campo formaDeIniciacao for igual a AUTO, será obrigatório seu preenchimento com o <PmtInfId> recebido por meio da pain.013 que gerou a instrução de pagamento recorrente, que deve conter entre 26 e 35 caracteres alfanuméricos ([a-z|A-Z|0-9]).
+- Se o campo formaDeIniciacao for igual a MANU ou DICT, este campo não deverá ser preenchido."
+2,    InterbankSettlementAmount <IntrBkSttlmAmt>,valor,[1..1],[1..1],,Amount,· Moeda: 3 caracteres  alfanuméricos e;        · Valor:  Máximo 18 caracteres numéricos (2 casas decimais separados por ponto),"Amount of money moved between the instructing agent and the instructed agent
+Note: The decimal separator is a dot.",Valor,"O atributo Ccy é obrigatório e preenchido com ""BRL"". Regra de preenchimento:
+- Se <Purp> for igual a IPAY ou REFU, deve ser o único campo de valor preenchido.
+- Se <Purp> for igual a GSCB, deve ser preenchido com a somatória do valor da compra e do valor do recurso em espécie disponibilizado.
+- Se <Purp> for igual a OTHR, deve ser preenchido com o valor do recurso em espécie disponibilizado."
+2,    AcceptanceDateTime <AccptncDtTm>,dataHoraRecebimentoPeloParticipanteDoUsuarioPagador,[0..1],[1..1],,DateTime,YYYY-MM-DD'T'hh:mm:ss.sss'Z',"Point in time when the payment order from the initiating party meets the processing conditions of the account servicing agent. This means that the account servicing agent has received the payment order and has applied checks such as authorisation, availability of funds.","Data e o horário de recebimento pelo participante do usuário pagador, da solicitação de ordem de pagamento instantâneo do usuário pagador; ou
+Data e horário de recebimento pelo participante do usuário pagador da pain.013 contendo a solicitação de pagamento.
+
+Caso o pagamento seja prioritário, esta informação será usada para controle de limite de tempo (timeout) do emissor da ordem de pagamento instantâneo.","Campo obrigatório. Deve ser preenchido com:
+
+- A data e o horário da solicitação da ordem de pagamento instantâneo pelo usuário pagador ao participante pagador em que possui a conta transacional ou ao seu prestador de serviço de iniciação; ou
+- Em caso de conta transacional com múltiplas alçadas, a data e o horário da última autorização concedida, conforme registro do participante pagador que detém a conta transacional; ou
+- A data e o horário de recebimento pelo participante do usuário pagador da pain.013 contendo a instrução de pagamento periódico;
+
+Formato padrão UTC (YYYY-MM-DD'T'hh:mm:ss.sss'Z')."
+2,    ChargeBearer <ChrgBr>,participanteTarifado,[1..1],[1..1],,CodeSet,4 caracteres alfanuméricos,Specifies which party/parties will bear the charges associated with the processing of the payment transaction.,Especifica qual parte / partes arcará com as cobranças associadas ao processamento da instrução de pagamento.,Campo obrigatório deve ser preenchido com a opção estabelecida na tabela de domínios.
+2,    MandateRelatedInformation <MndtRltdInf>,,[0..1],[1..1],,±,,Provides further details of the mandate signed between the creditor and the debtor.,,
+3,        Type <Tp>,,[0..1],[1..1],,±,,"Specifies the type of mandate, such as paper, electronic or scheme.",,
+4,            LocalInstrument <LclInstrm>,,[0..1],[1..1],,±,,User community specific instrument.,,
+5,                Proprietary <Prtry>,formaDeIniciacao,[1..1],[1..1],,CodeSet,4 caracteres alfanuméricos,"Specifies the local instrument, as a proprietary code.",Especifica a forma de iniciação do pagamento.,Deve ser preenchido com uma das opções estabelecidas na tabela de domínios.
+2,    InitiatingParty <InitgPty>,,[0..1],[0..1],,±,,,,
+3,        Identification <Id>,,[0..1],[1..1],,±,,,,
+4,            OrganisationIdentification <OrgId>,,[1..1],[1..1],,±,,,,
+5,                Other <Othr>,,[0..*],[1..1],,±,,,,
+6,                    Identification <Id>,cnpjIniciadorPagamento,[1..1],[1..1],,Text,14 caracteres alfanuméricos,"Party that initiates the payment.
+Unique and unambiguous identification of a party.
+Identification assigned by an institution.","Conjunto de elementos usado para informar quem foi o iniciador de pagamento, não necessariamente  IF ou IP.","Campo opcional. Deve ser preenchido com o CNPJ da instituição que presta serviço de iniciação de transação de pagamento. CNPJ com 14 caracteres (sem pontos ou traços). Caso o pagamento tenha sido iniciado por serviço de iniciação de transação de pagamento, independentemente da forma de iniciação (exemplo: MANU, DICT, INIC, QRDN, QRES, APDN ou AUTO), o seu preenchimento é obrigatório; caso contrário, não deve ser preenchido."
+2,    Debtor <Dbtr>,,[1..1],[1..1],,±,,,,
+3,        Name <Nm>,nomeUsuarioPagador,[0..1],[1..1],,Text,Máximo 140 caracteres alfanuméricos,"Party that owes an amount of money to the (ultimate) creditor.
+Unique and unambiguous identification of a party.","Nome/razão social ou nome fantasia do usuário pagador, registrados na forma da legislação em vigor - pessoa física ou jurídica que está enviando os recursos por meio da instrução de pagamento.",Campo Obrigatório.
+3,        Identification <Id>,,[0..1],[1..1],,±,,,,
+4,            PrivateIdentification <PrvtId>,,[1..1],[1..1],,±,,,,
+5,                Other <Othr>,,[0..*],[1..1],,±,,,,
+6,                    Identification <Id>,cpfCnpjUsuarioPagador,[1..1],[1..1],,Text,11 caracteres numéricos para CPF ou 14 caracteres alfanuméricos para CNPJ,"Party that owes an amount of money to the (ultimate) creditor.
+Unique and unambiguous identification of a party.",Identificação única do usuário pagador,"Deve ser preenchido com CPF ou CNPJ do usuário pagador. O CPF será utilizado com 11 dígitos e o CNPJ com 14 caracteres (ambos com dígitos verificadores). Deve ser informado sem pontos ou traços.
+
+No caso de pagamento de obrigações e direitos de instituição participante do SPI deve ser preenchido com o CNPJ da instituição pagadora."
+2,    DebtorAccount <DbtrAcct>,,[0..1],[1..1],,±,,,,
+3,        Identification <Id>,,[1..1],[1..1],,±,,,,
+4,            Other <Othr>,,[1..1],[1..1],,±,,,,
+5,                Identification <Id>,contaUsuarioPagador,[1..1],[1..1],,Numeric,Máximo 20 caracteres numéricos,"Unambiguous identification of the account of the debtor to which a debit entry will be made
+as a result of the transaction.",Número da conta transacional do usuário pagador.,"Campo obrigatório. Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir), se houver valor alfanumérico, este deve ser convertido para 0."
+5,                Issuer <Issr>,agenciaUsuarioPagador,[0..1],[0..1],,Numeric,Máximo 4 caracteres numéricos,Entity that assigns the identification.,Agência do usuário pagador.,"Campo opcional. Preenchido, caso a conta transacional esteja associda a uma agência. Número da agência deve ser informado sem dígito verificador."
+3,        Type <Tp>,,[0..1],[1..1],,±,,,,
+4,            Code <Cd>,tipoContaUsuarioPagador,[1..1],[1..1],,CodeSet,4 caracteres alfanuméricos,Nature or use of the account in a proprietary form.,Conjunto de elementos que especifica o tipo de conta transacional do usuário pagador.,Deve ser preenchido com uma das opções estabelecidas na tabela de domínios para o tipo de conta transacional.
+2,    DebtorAgent <DbtrAgt>,,[1..1],[1..1],,±,,,,
+3,        FinancialInstitutionIdentification <FinInstnId>,,[1..1],[1..1],,±,,,,
+4,            ClearingSystemMemberIdentification <ClrSysMmbId>,,[0..1],[1..1],,±,,,,
+5,                MemberIdentification <MmbId>,participanteDoUsuarioPagador,[1..1],[1..1],,Text,8 caracteres alfanuméricos,"Financial institution servicing an account for the debtor.
+Specifies the details to identify a financial institution","Conjunto de elementos usado para identificar o participante do usuário pagador - participante no qual o usuário pagador detém a conta transacional. Caso o participante do usuário pagador seja participante indireto do SPI, a busca da identificação do seu liquidante no SPI será realizada por procedimento interno do SPI.","Deve ser preenchido com o ISPB do participante direto ou indireto do SPI, conforme o caso, no qual o usuário pagador detém a conta transacional."
+2,    CreditorAgent <CdtrAgt>,,[1..1],[1..1],,±,,,,
+3,        FinancialInstitutionIdentification <FinInstnId>,,[1..1],[1..1],,±,,,,
+4,            ClearingSystemMemberIdentification <ClrSysMmbId>,,[0..1],[1..1],,±,,,,
+5,                MemberIdentification <MmbId>,participanteDoUsuarioRecebedor,[1..1],[1..1],,Text,8 caracteres alfanuméricos,"Financial institution servicing an account for the creditor.
+Specifies the details to identify a financial institution","Conjunto de elementos usado para identificar o participante do usuário recebedor - participante no qual o usuário recebedor detém a conta transacional . Caso o participante do usuário recebedor seja participante indireto do SPI, a busca da identificação do seu liquidante no SPI será realizada por procedimento interno do SPI.","Deve ser preenchido com o ISPB do participante direto ou indireto do SPI, conforme o caso, no qual o usuário recebedor detém a conta transacional."
+2,    Creditor <Cdtr>,,[1..1],[1..1],,±,,,,
+3,        Identification <Id>,,[0..1],[1..1],,±,,,,
+4,            PrivateIdentification <PrvtId>,,[1..1],[1..1],,±,,,,
+5,                Other <Othr>,,[0..*],[1..1],,±,,,,
+6,                    Identification <Id>,cpfCnpjUsuarioRecebedor,[1..1],[1..1],,Text,11 caracteres numéricos para CPF ou 14 caracteres alfanuméricos para CNPJ,"Party to which an amount of money is due.
+Unique and unambiguous identification of a person.",Identificação única do usuário recebedor - pessoa que está recebendo os recursos por meio da instrução de pagamento.,"Deve ser preenchido com CPF ou CNPJ do usuário recebedor. O CPF será utilizado com 11 dígitos e o CNPJ com 14 caracteres (ambos com dígitos verificadores). Deve ser informado sem pontos ou traços.
+
+No caso de recebimento de obrigações e direitos por instituição participante do SPI deve ser preenchido com o CNPJ da instituição recebedora."
+2,    CreditorAccount <CdtrAcct>,,[0..1],[1..1],,±,,,,
+3,        Identification <Id>,,[1..1],[1..1],,±,,,,
+4,            Other <Othr>,,[1..1],[1..1],,±,,,,
+5,                Identification <Id>,contaUsuarioRecebedor,[1..1],[1..1],,Numeric,Máximo 20 caracteres numéricos,Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.,Número da conta transacional do usuário recebedor,"Campo obrigatório. Deve ser preenchido com o número da conta do usuário recebedor, com dígito verificador (se este existir), se houver valor alfanumérico, este deve ser convertido para 0."
+5,                Issuer <Issr>,agenciaUsuarioRecebedor,[0..1],[0..1],,Numeric,Máximo 4 caracteres numéricos,Entity that assigns the identification,Agência do usuário recebedor.,"Campo opcional. Preenchido, caso a conta transacional esteja associda a uma agência. Número da agência deve ser informado sem dígito verificador."
+3,        Type <Tp>,,[0..1],[1..1],,±,,,,
+4,            Code <Cd>,tipoContaUsuarioRecebedor,[1..1],[1..1],,CodeSet,4 caracteres alfanuméricos,Nature or use of the account in a proprietary form.,Conjunto de elementos que especifica o tipo de conta transacional do usuário recebedor.,"Deve ser preenchido com uma das opções estabelecidas na tabela de domínios para o tipo de conta transacional.
+O domínio SLRY, para Conta-Salário, não deve ser selecionado nesse campo, pois esse tipo de conta não recebe pagamentos."
+3,        Proxy <Prxy>,,[0..1],[0..1],,±,,,,
+4,            Identification <Id>,idContaTransacional,[1..1],[1..1],,Text,Máximo 77 caracteres alfanuméricos com caracteres especiais,Identification used to indicate the account identification under another specified name.,Conjunto de elementos usado para identificar a conta transacional por meio de chave de endereçamento do usuário recebedor,"Regra de preenchimento:
+
+ - Se a forma de iniciação do pagamento for igual a MANU ou AUTO, o bloco de elemento <Prxy> não deve ser preenchido;
+ - Se a forma de iniciação do pagamento for igual DICT, QRDN, QRES, APDN ou INIC o bloco de elemento <Prxy> deve ser sempre preenchido com a chave Pix;
+
+O formato da chave Pix indica o seu tipo e deve ser preenchido de acordo com as especificações contidas na seção 1 do Manual Operacional do DICT."
+2,    Purpose <Purp>,,[0..1],[1..1],,±,,,,
+3,        Code <Cd>,finalidadeDaTransacao,[1..1],[1..1],,CodeSet,4 caracteres alfanuméricos,"Underlying reason for the payment transaction.
+Usage: Purpose is used by the end-customers, that is initiating party, (ultimate) debtor, (ultimate) creditor to provide information concerning the nature of the payment. Purpose is a content element, which is not used for processing by any of the agents involved in the payment chain.",Finalidade da transação de forma codificada.,"Campo obrigatório. Deve ser preenchido com umas das opções da Tabela de Domínios. No caso de formaDeIniciacao igual a 'AUTO', preencher com 'IPAY'."
+2,    RemittanceInformation <RmtInf>,,[0..1],[0..1],,±,,,,
+3,        Unstructured <Ustrd>,informacoesEntreUsuarios,[0..*],[0..1],,Text,Máximo 140 caracteres alfanuméricos,"Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in na unstructured form.","Conjunto de elementos usado para envio de informações do usuário pagador para o usuário recebedor, ou do usuário recebedor para o usuário pagador, no caso de pagamento no âmbito do Pix Automático.",Deve ser preenchido sempre que o usuário pagador ou o usuário recebedor inserir alguma informação adicional em um pagamento.
+3,        Structured <Strd>,,[0..*],[0..1],,±,,"Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in a structured form.",Conjunto de elementos estruturados usado para para envio de informações do pagador para o recebedor.,"Campo opcional. Regra geral:
+Se <Purp> for igual a IPAY ou REFU,  o bloco de elementos Structured <Strd>  não deverá ser preenchido; 
+Se <Purp> for igual a GSCB ou OTHR, o bloco de elementos Structured <Strd> deverá ser preenchido."
+4,            ReferredDocumentInformation <RfrdDocInf>,,[0..*],[1..1],,±,,Provides the identification and the content of the referred document.,Conjunto de elementos usado para discriminar a modalidade do agente de saque e identificar o facilitador de serviço de saque.,
+5,                Type <Tp>,,[0..1],[1..1],,±,,Specifies the type of referred document.,Conjunto de elementos usado para discriminar a modalidade do agente de saque e identificar o facilitador de serviço de saque.,
+6,                    CodeOrProprietary <CdOrPrtry>,,[1..1],[1..1],,±,,Provides the type details of the referred document.,Conjunto de elementos usado para discriminar a modalidade do agente de saque e identificar o facilitador de serviço de saque.,
+7,                        Proprietary <Prtry>,modalidadeAgente,[1..1],[1..1],,CodeSet,5 caracteres alfanuméricos,Proprietary identification of the type of the remittance document.,Modalidades do agente de forma codificada.,Deve ser preenchido com uma das opções estabelecidas na tabela de domínios.
+6,                    Issuer <Issr>,facilitadorDoServicoDeSaque,[0..1],[1..1],,Text,8 caracteres numéricos,Identification of the issuer of the reference document type.,Identificação do facilitador de serviço de saque (FSS).,Deve ser preenchido com o ISPB do participante do SPI facilitador de serviço de Pix Saque ou Pix Troco.
+4,            ReferredDocumentAmount <RfrdDocAmt>,,[0..1],[1..1],,±,,Provides details on the amounts of the referred document.,,
+5,                AdjustmentAmountAndReason <AdjstmntAmtAndRsn>,,[0..*],[1..2],,±,,Specifies detailed information on the amount and reason of the document adjustment.,Conjunto de elementos usado para discriminar os valores do pagamento.,"Regra de preenchimento:                                                                                                                                                  
+ Se <Purp> for igual a GSCB, será obrigatório o preenchimento de dois blocos <AdjstmntAmtAndRsn> distintos, um com o valor da compra e o código VLCP e outro com o valor do recurso em espécie disponibilizado e o código VLDN; e
+ Se <Purp> for igual a OTHR, será obrigatório o preenchimento de um bloco <AdjstmntAmtAndRsn>, com o valor do recurso em espécie disponibilizado e o código VLDN."
+6,                    Amount <Amt>,valorDoDinheiroOuCompra,[1..1],[1..1],,Amount,· Moeda: 3 caracteres  alfanuméricos e; · Valor:  Máximo 18 caracteres numéricos (2 casas decimais separados por ponto),Amount of money of the document adjustment.,Valor da compra / Valor do recurso em espécie disponibilizado.,"O atributo Ccy é obrigatório e preenchido com ""BRL""."
+6,                    Reason <Rsn>,tipoDinheiroOuCompra,[0..1],[1..1],,CodeSet,4 caracteres alfanuméricos,Specifies the reason for the adjustment.,Tipos de valores discriminados de forma codificada,Deve ser preenchido com uma das opções estabelecidas na tabela de domínios.

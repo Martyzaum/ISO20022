@@ -1,0 +1,87 @@
+Mensagem ISO 20022,Domínio para o Brasil,,,,
+Message Element,Código,Nome,Descrição,Comentários,Fonte de referência
+"
+<SttlmInf> SettlementInformation
+        <SttlmMtd> SettlementMethod
+
+",CLRG,ClearingSystem,Settlement is done through a payment clearing system.,Método de liquidação por intermédio do sistema de pagamentos instantâneos (SPI),SettlementMethod1Code
+"
+<PmtTpInf> PaymentTypeInformation
+        <InstrPrty> InstructionPriority
+
+",HIGH,High,Priority level is high.,"Liquidação Prioritária. Deve ser utilizado quando o usuário pagador solicita o envio imediato do pagamento. É necessário salientar que, nesta situação, o SPI considerará o tempo de validação reportado pelo emissor da ordem de pagamento instantâneo, referente à diferença entre o horário de envio da ordem ao SPI e o horário do recebimento da solicitação do usuário pagador, para efeitos de timeout.",Priority2Code
+,NORM,Normal,Priority level is normal.,"Liquidação Não Prioritária. Deve ser utilizado quando o usuário pagador faz um Pix Agendado ou quando o tempo máximo para autorização de iniciação da transação pelo participante do usuário pagador é ampliado, nos casos de transações com suspeita de fraude. É necessário salientar que, nesta situação, o SPI desconsiderará o tempo de validação reportado pelo emissor do pagamento para efeitos de timeout.",
+"
+<PmtTpInf> PaymentTypeInformation
+        <SvcLvl> ServiceLevel
+                <Prtry> Proprietary
+
+",PAGAGD,Pagamento Agendado,Pagamento agendado.,,PrtrySvcLvlCode
+,PAGFRD,Pagamento com Suspeita de Fraude,Pagamento sob análise antifraude.,,
+,PAGPRI,Pagamento Prioritário,Pagamento prioritário.,,
+"
+<CdtTrfTxInf> CreditTransferTransactionInformation
+        <IntrBkSttlmAmt> InterbankSettlementAmount
+                <Ccy> 
+
+",BRL,Brazilian Real,Real (R$),,ActiveCurrencyCode
+"
+<CdtTrfTxInf> CreditTransferTransactionInformation
+        <ChrgBr> ChargeBearer
+
+",SLEV,FollowingServiceLevel,Charges are to be applied following the rules agreed in the service level and/or scheme.,As cobranças devem ser aplicadas de acordo com as regras acordadas no nível de serviço.,ChargeBearerType1Code
+"
+<CdtTrfTxInf> CreditTransferTransactionInformation
+        <MndtRltdInf> MandateRelatedInformation
+                <Tp> Type
+                                <LclInstrm> LocalInstrument
+                                                                <Prtry> Proprietary
+
+",APDN,Pix por aproximação dinâmico,Utilizado quando o pagamento for iniciado por aproximação a partir de informações geradas para um QR Code dinâmico.,,PrtryLclInstrmCode
+,AUTO,Pix Automático,Utilizado quando o pagamento for iniciado no âmbito do Pix Automático.,,
+,DICT,Inserção manual de chave Pix,Utilizado quando o pagamento for iniciado por meio de inserção manual de chave Pix.,,
+,INIC,Iniciado por meio de serviço de iniciação de transação de pagamento,"Pix iniciado por meio de serviço de iniciação de transação de pagamento, nos casos em que o participante possui todas as informações do usuário recebedor",,
+,MANU,Inserção manual de dados da conta transacional,Utilizado quando o pagamento for iniciado por meio de inserção manual dos dados da conta.,,
+,QRDN,QR code dinâmico,Utilizado quando o pagamento for iniciado por meio de leitura de QR code dinâmico.,,
+,QRES,QR code estático,Utilizado quando o pagamento for iniciado por meio de leitura de QR code estático.,,
+"
+<CdtTrfTxInf> CreditTransferTransactionInformation
+        <DbtrAcct> DebtorAccount
+                <Tp> Type
+                                <Cd> Code
+
+",CACC,Current,Account used to post debits and credits when no specific account has been nominated.,Conta corrente de cliente ou conta de instituição participante direto do SPI para liquidação de obrigações e direitos próprios.,ExternalCashAccountType1Code
+,SLRY,Salary,Accounts used for salary payments.,Conta-Salário. Para uso exclusivo da Secretaria do Tesouro Nacional (STN) e apenas quando se tratar de <CdtrAcct>.,
+,SVGS,Savings,Account used for savings.,Conta de Poupança,
+,TRAN,TransactingAccount,A transacting account is the most basic type of bank account that you can get. The main difference between transaction and cheque accounts is that you usually do not get a cheque book with your transacting account and neither are you offered an overdraft facility.,Conta de Pagamento,
+"
+<CdtTrfTxInf> CreditTransferTransactionInformation
+        <Purp> Purpose
+                <Cd> Code
+
+",GSCB,PurchaseSaleOfGoodsAndServicesWithCashBack,Transaction is related to purchase and sale of goods and services with cash back.,Pix Troco.,ExternalPurpose1Code
+,IPAY,InstantPayments,Transaction in which the amount is available to the payee immediately.,Compra ou transferência.,
+,OTHR,Other,Other payment purpose.,Pix Saque.,
+,REFU,Refund,Transaction is the payment of a refund,Reembolso total ou parcial ao participante do usuário pagador no âmbito do MED (Mecanismo Especial de Devolução) para o Pix Automático pela utilização de recursos próprios para ressarcimento do usuário pagador.,
+"
+<CdtTrfTxInf> CreditTransferTransactionInformation
+        <RmtInf> RemittanceInformation
+                <Strd> Structured
+                                <RfrdDocInf> ReferredDocumentInformation
+                                                                <Tp> Type
+                                                                                                                                <CdOrPrtry> CodeOrProprietary
+                                                                                                                                                                                                                                                                <Prtry> Proprietary
+
+",AGFSS,Agente Facilitador de Serviço de Saque,Pix Saque ou Pix Troco com ressarcimento de custos operacionais (RCO) de participante facilitador de serviço de saque (FSS) que facilita diretamente o serviço de saque.,,ModalidadeAgenteCode
+,AGTEC,Agente Estabelecimento Comercial,Pix Saque ou Pix Troco com ressarcimento de custos operacionais (RCO) de agente de saque que é um estabelecimento comercial.,,
+,AGTOT,Agente Outra Espécie de Pessoa Jurídica ou Correspondente no País,Pix Saque ou Pix Troco com ressarcimento de custos operacionais (RCO) de agente de saque que é outra espécie de pessoa jurídica ou correspondente no País,,
+"
+<CdtTrfTxInf> CreditTransferTransactionInformation
+        <RmtInf> RemittanceInformation
+                <Strd> Structured
+                                <RfrdDocAmt> ReferredDocumentAmount
+                                                                <AdjstmntAmtAndRsn> AdjustmentAmountAndReason
+                                                                                                                                <Rsn> Reason
+
+",VLCP,Valor da compra,Valor da compra nas transações do tipo Pix Troco.,,RsnAmtCode
+,VLDN,Valor do recurso em espécie disponibilizado,Recurso em espécie disponibilizado ao usuário pagador.,,

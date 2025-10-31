@@ -1,0 +1,34 @@
+Mensagem ISO 20022,Domínio para o Brasil,,,,
+Message Element,Código,Nome,Descrição,Comentários,Fonte de referência
+"
+<SttlmInf> SettlementInformation
+        <SttlmMtd> SettlementMethod
+
+",CLRG,ClearingSystem,Settlement is done through a payment clearing system.,Método de liquidação por intermédio do sistema de pagamentos instantâneos (SPI),SettlementMethod1Code
+"
+<TxInf> TransactionInformation
+        <RtrdIntrBkSttlmAmt> ReturnedInterbankSettlementAmount
+                <Ccy> 
+
+",BRL,Brazilian Real,Real (R$),,ActiveCurrencyCode
+"
+<TxInf> TransactionInformation
+        <SttlmPrty> SettlementPriority
+
+",HIGH,High,Priority level is high.,Liquidação Prioritária. Deve ser utilizado quando o usuário recebedor do pagamento original solicita o envio imediato da devolução.,Priority3Code
+,NORM,Normal,Priority level is normal.,"Liquidação Não Prioritária. Deve ser utilizado quando o usuário recebedor do pagamento original solicita que o envio da devolução seja postergado ou quando o PSP emissor da ordem de devolução necessita, justificadamente, atrasar a devolução dos valores do pagamento devido aos processos internos de prevenção à fraude.",
+"
+<TxInf> TransactionInformation
+        <ChrgBr> ChargeBearer
+
+",SLEV,FollowingServiceLevel,Charges are to be applied following the rules agreed in the service level and/or scheme.,As cobranças devem ser aplicadas de acordo com as regras acordadas no nível de serviço.,ChargeBearerType1Code
+"
+<TxInf> TransactionInformation
+        <RtrRsnInf> ReturnReasonInformation
+                <Rsn> Reason
+                                <Cd> Code
+
+",BE08,BankError,Returned as a result of a bank error.,Devolução de pagamento iniciada pelo participante do usuário recebedor no âmbito do Mecanismo Especial de Devolução. Deve ser preenchido sempre que uma solicitação de devolução for iniciada pelo participante do usuário pagador com o motivo falha operacional do PSP do pagador ou sempre que a devolução for iniciada pelo participante do usuário recebedor por falha operacional em seus próprios sistemas.,ExternalReturnReason1Code
+,FR01,Fraud,Returned as a result of fraud.,"Devolução de pagamento, iniciada pelo participante do usuário recebedor no âmbito do Mecanismo Especial de Devolução, motivada por fundada suspeita de fraude. Deve ser preenchido sempre que uma solicitação de devolução for iniciada pelo participante do usuário pagador com o motivo fundada suspeita de fraude ou sempre que a devolução for iniciada pelo participante do usuário recebedor por fundada suspeita de fraude.",
+,MD06,RefundRequestByEndCustomer,Return of funds requested by end customer,Devolução de pagamento solicitado pelo usuário recebedor.,
+,SL02,SpecificServiceOfferedByCreditorAgent,Due to specific service offered by the Creditor Agent,Devolução de pagamento solicitada pelo usuário recebedor motivada por um erro na transação ou desacordo entre as partes relacionados ao Pix Saque ou ao Pix Troco.,

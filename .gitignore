@@ -1,0 +1,12 @@
+node_modules/
+data/
+*.db
+*.db-journal
+.env
+.DS_Store
+*.pem
+*.key
+*.crt
+*.p12
+cert/
+

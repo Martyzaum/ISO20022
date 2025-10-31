@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Envelope xmlns="https://www.bcb.gov.br/pi/pacs.008/1.13">
+    <AppHdr Id="_0">
+        <Fr>
+            <FIId>
+                <FinInstnId>
+                    <Othr>
+                        <Id>99999010</Id>
+                    </Othr>
+                </FinInstnId>
+            </FIId>
+        </Fr>
+        <To>
+            <FIId>
+                <FinInstnId>
+                    <Othr>
+                        <Id>00038166</Id>
+                    </Othr>
+                </FinInstnId>
+            </FIId>
+        </To>
+        <BizMsgIdr>M99999010WBkktWx30QHISsqLgol5u6f</BizMsgIdr>
+        <MsgDefIdr>pacs.008.spi.1.13</MsgDefIdr>
+        <CreDt>2025-10-31T15:51:11.499Z</CreDt>
+        <Sgntr><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#key-info-id"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>agTeCVs/T/GqwPkbO2vy5FTNv+gboZThwvvqZU+yl9w=</DigestValue></Reference><Reference URI="#_0"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>cmS8hdDvzOxEyY7fay1o4PxWfchmdhb51BcLXR11X2E=</DigestValue></Reference><Reference URI="#document-id"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>gURZQRAEZA8goYmBlqYYV1WGETskZtmGYzhfdbTdfBU=</DigestValue></Reference></SignedInfo><SignatureValue>NTR6SnS0xnpGS+1GDZnQ5nrrFzE3xWc1ptDIF7+VdSSIhegB0ZXKHGLg8N1oWXvNC5BbeietBUsKjDtNsbxK3kcWBZB2KCDMy/sHtS+sbtmJN5H5WsEk8ciqpYX+qRl+KKSwyJkVYBLHX7M8mhQjlV03iSKXiNJrkHQeoi1o7S1ZZaKFIQrQD+d4GMbwIUPRn7jNrx0ObH8kMweRKPS3rI9EMzTEPeQ9NgKPL2dKgwKqeILmeA7JBhLmCFR5V9FniRdVaKc1tTWhYZVY8xOSiaQe2LaYnrdKHpHh0jxIkTXSwlHIMGSBMFWrSziqv4BZvCwAxlfQARkKc6yAkBAVqg==</SignatureValue><KeyInfo Id="key-info-id"><X509Data>
+      <X509Certificate>MIIEJzCCAw+gAwIBAgIUfKTzLM3me21pSOCCSh7SOqzbDMAwDQYJKoZIhvcNAQELBQAwgaQxCzAJBgNVBAYTAkJSMQ8wDQYDVQQIDAZCcmFzaWwxETAPBgNVBAcMCEJyYXNpbGlhMRIwEAYDVQQKDAlUZXN0ZSBTUEkxGDAWBgNVBAsMD0Rlc2Vudm9sdmltZW50bzEhMB8GA1UEAwwYVGVzdGUgQXNzaW5hdHVyYSBYTUwgU1BJMSAwHgYJKoZIhvcNAQkBFhF0ZXN0ZUBleGFtcGxlLmNvbTAeFw0yNTEwMzExNDI0MzFaFw0yNjEwMzExNDI0MzFaMIGkMQswCQYDVQQGEwJCUjEPMA0GA1UECAwGQnJhc2lsMREwDwYDVQQHDAhCcmFzaWxpYTESMBAGA1UECgwJVGVzdGUgU1BJMRgwFgYDVQQLDA9EZXNlbnZvbHZpbWVudG8xITAfBgNVBAMMGFRlc3RlIEFzc2luYXR1cmEgWE1MIFNQSTEgMB4GCSqGSIb3DQEJARYRdGVzdGVAZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCP+HxpA1fLVT2SKmvV1Q4nvtDWUlwetJHRCzQXSClxo5n3dhQmBmVGshB7njodj10xpop8Q9A2DevT8RZT3C4L4j74R+2MxX48T6uNYXXBcaXYATWimX1Rgji/81lsx9V7YtQAdVeGZghWtqZsg5ICOpS3LrCk9Gf7ydIUIpBNKRpOmjktDVDTYx+iWOIdzFEbxBMWzbh+dM5sUCZoBvHFIUnXhMT+sSEUj0r7tn62SQhP6cE469HqYHMaU8IIB1vaMh75oDDgW6QBgHRqpD5Dukf1ixAcQs2WSt8O+MJDw7PBeSJrvE0roOMyfAw8UkQaJMeG2jmGc0o0/Z/1LGexAgMBAAGjTzBNMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgWgMBQGA1UdEQQNMAuCCWxvY2FsaG9zdDAdBgNVHQ4EFgQU/VeBoUA0oYF9C7cMKA6UCu44tIQwDQYJKoZIhvcNAQELBQADggEBAIkve4hyMspw+6tfcPs3sNVgYctH+ORlhu12+ft8Wtoln/qoMx2LMd6157fL7dQMyjGnrYLL9j8/lnsF4PTRQlvKPW9WqT0kqi4wcokcJ9xVXGiO/uUQQR5qGi3UPyqZI376VG3Zj9nqBj9XcghUPgvpVq/aVBHkQfHnvme9SFryVu1mSmDIowwI2VHUWNGuKc/pQv2AnIO9MNsLIii2JFTPBMRpqEwLbF3qrlTplPRI382wAGMEcv5qUvkuPvz5VNEQW4v6kPMZW4XzFjy/c9F/IwF9VqsSaxmQUgQT8zMjVggI/v0PHh1nxVNH8/FIzKnL6JZr1o+EPk1Gbi1HxcI=</X509Certificate>
+      <X509IssuerSerial>
+        <X509IssuerName>C=BR
+ST=Brasil
+L=Brasilia
+O=Teste SPI
+OU=Desenvolvimento
+CN=Teste Assinatura XML SPI
+emailAddress=teste@example.com</X509IssuerName>
+        <X509SerialNumber>7CA4F32CCDE67B6D6948E0824A1ED23AACDB0CC0</X509SerialNumber>
+      </X509IssuerSerial>
+    </X509Data></KeyInfo></Signature></Sgntr>
+    </AppHdr>
+    <Document Id="document-id">
+        <FIToFICstmrCdtTrf>
+            <GrpHdr>
+                <MsgId>M99999010WBkktWx30QHISsqLgol5u6f</MsgId>
+                <CreDtTm>2025-10-31T15:51:11.499Z</CreDtTm>
+                <NbOfTxs>1</NbOfTxs>
+                <SttlmInf>
+                    <SttlmMtd>CLRG</SttlmMtd>
+                </SttlmInf>
+                <PmtTpInf>
+                    <InstrPrty>HIGH</InstrPrty>
+                    <SvcLvl>
+                        <Prtry>PAGPRI</Prtry>
+                    </SvcLvl>
+                </PmtTpInf>
+            </GrpHdr>
+            <CdtTrfTxInf>
+                <PmtId>
+                    <EndToEndId>E99999010202510311251RrlhwMDLs5L</EndToEndId>
+                </PmtId>
+                <IntrBkSttlmAmt Ccy="BRL">1000.00</IntrBkSttlmAmt>
+                <AccptncDtTm>2025-10-31T15:50:59.499Z</AccptncDtTm>
+                <ChrgBr>SLEV</ChrgBr>
+                <MndtRltdInf>
+                    <Tp>
+                        <LclInstrm>
+                            <Prtry>MANU</Prtry>
+                        </LclInstrm>
+                    </Tp>
+                </MndtRltdInf>
+                <Dbtr>
+                    <Nm>Fulano da Silva</Nm>
+                    <Id>
+                        <PrvtId>
+                            <Othr>
+                                <Id>70000000000</Id>
+                            </Othr>
+                        </PrvtId>
+                    </Id>
+                </Dbtr>
+                <DbtrAcct>
+                    <Id>
+                        <Othr>
+                            <Id>500000</Id>
+                            <Issr>3000</Issr>
+                        </Othr>
+                    </Id>
+                    <Tp>
+                        <Cd>CACC</Cd>
+                    </Tp>
+                </DbtrAcct>
+                <DbtrAgt>
+                    <FinInstnId>
+                        <ClrSysMmbId>
+                            <MmbId>99999010</MmbId>
+                        </ClrSysMmbId>
+                    </FinInstnId>
+                </DbtrAgt>
+                <CdtrAgt>
+                    <FinInstnId>
+                        <ClrSysMmbId>
+                            <MmbId>00038166</MmbId>
+                        </ClrSysMmbId>
+                    </FinInstnId>
+                </CdtrAgt>
+                <Cdtr>
+                    <Id>
+                        <PrvtId>
+                            <Othr>
+                                <Id>80000000000</Id>
+                            </Othr>
+                        </PrvtId>
+                    </Id>
+                </Cdtr>
+                <CdtrAcct>
+                    <Id>
+                        <Othr>
+                            <Id>600000</Id>
+                            <Issr>4000</Issr>
+                        </Othr>
+                    </Id>
+                    <Tp>
+                        <Cd>SVGS</Cd>
+                    </Tp>
+                </CdtrAcct>
+                <Purp>
+                    <Cd>IPAY</Cd>
+                </Purp>
+                <RmtInf>
+                    <Ustrd>Pagamento de teste</Ustrd>
+                </RmtInf>
+            </CdtTrfTxInf>
+        </FIToFICstmrCdtTrf>
+    </Document>
+</Envelope>

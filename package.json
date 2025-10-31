@@ -1,0 +1,27 @@
+{
+  "name": "iso20022",
+  "version": "1.0.0",
+  "description": "ISO 20022 SPI Message Generator and API",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "node api/test-api.js",
+    "test:api": "node api/test-api.js",
+    "start": "node api/server.js",
+    "dev": "node --watch api/server.js"
+  },
+  "dependencies": {
+    "@xmldom/xmldom": "^0.8.11",
+    "better-sqlite3": "^9.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "xml-crypto": "^6.1.2",
+    "xmlbuilder2": "^4.0.0",
+    "xmldom": "^0.6.0"
+  }
+}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Envelope xmlns="https://www.bcb.gov.br/pi/pacs.004/1.5">
+    <AppHdr Id="_0">
+        <Fr>
+            <FIId>
+                <FinInstnId>
+                    <Othr>
+                        <Id>00038166</Id>
+                    </Othr>
+                </FinInstnId>
+            </FIId>
+        </Fr>
+        <To>
+            <FIId>
+                <FinInstnId>
+                    <Othr>
+                        <Id>00038166</Id>
+                    </Othr>
+                </FinInstnId>
+            </FIId>
+        </To>
+        <BizMsgIdr>M00038166co2iHsLdD3pRWB1Hja91CYw</BizMsgIdr>
+        <MsgDefIdr>pacs.004.spi.1.5</MsgDefIdr>
+        <CreDt>2025-10-31T15:51:11.499Z</CreDt>
+        <Sgntr><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#key-info-id"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>agTeCVs/T/GqwPkbO2vy5FTNv+gboZThwvvqZU+yl9w=</DigestValue></Reference><Reference URI="#_0"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>TVzcP0IqCzKQaFXSJ2hXQhByZ3PbiqadX2ivMLtNh28=</DigestValue></Reference><Reference URI="#document-id"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>dvc5noPEX65WWGsK1uWEQ81MmihdnnFecWoYQ+8IdcQ=</DigestValue></Reference></SignedInfo><SignatureValue>AbaUIvoqa0qbe+TvciAmV09t8ZK39i80EoVZHjDFTPmtdviRaj5gTS4SZb1q4Uar+lHXGQ9Q3kYT3HgTi4D+5NZr/GKxP8TrBXrhOi5ah2dY1q3X650lqlXjaQzy8dyP/6RpgQdA3gVpjh1Kn3jDSk23HgnKrEoyuNBv1tK/gbZCgzYeScrgmRPmBJNVVk7mHS/1WtJDnYUhvgnXPf6yp86oY7xrUSZj+6SEyzIZyBjAnjAWAAFlyHuSOmMX8kJ4I7Vh01xOD8kow4oJgwS/NBBLztt95I1RSNGCzlSEw9c6dsuBxGhNSeJjzIoX2XaAU/JVpzsEupY5D6gZ2tlF+g==</SignatureValue><KeyInfo Id="key-info-id"><X509Data>
+      <X509Certificate>MIIEJzCCAw+gAwIBAgIUfKTzLM3me21pSOCCSh7SOqzbDMAwDQYJKoZIhvcNAQELBQAwgaQxCzAJBgNVBAYTAkJSMQ8wDQYDVQQIDAZCcmFzaWwxETAPBgNVBAcMCEJyYXNpbGlhMRIwEAYDVQQKDAlUZXN0ZSBTUEkxGDAWBgNVBAsMD0Rlc2Vudm9sdmltZW50bzEhMB8GA1UEAwwYVGVzdGUgQXNzaW5hdHVyYSBYTUwgU1BJMSAwHgYJKoZIhvcNAQkBFhF0ZXN0ZUBleGFtcGxlLmNvbTAeFw0yNTEwMzExNDI0MzFaFw0yNjEwMzExNDI0MzFaMIGkMQswCQYDVQQGEwJCUjEPMA0GA1UECAwGQnJhc2lsMREwDwYDVQQHDAhCcmFzaWxpYTESMBAGA1UECgwJVGVzdGUgU1BJMRgwFgYDVQQLDA9EZXNlbnZvbHZpbWVudG8xITAfBgNVBAMMGFRlc3RlIEFzc2luYXR1cmEgWE1MIFNQSTEgMB4GCSqGSIb3DQEJARYRdGVzdGVAZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCP+HxpA1fLVT2SKmvV1Q4nvtDWUlwetJHRCzQXSClxo5n3dhQmBmVGshB7njodj10xpop8Q9A2DevT8RZT3C4L4j74R+2MxX48T6uNYXXBcaXYATWimX1Rgji/81lsx9V7YtQAdVeGZghWtqZsg5ICOpS3LrCk9Gf7ydIUIpBNKRpOmjktDVDTYx+iWOIdzFEbxBMWzbh+dM5sUCZoBvHFIUnXhMT+sSEUj0r7tn62SQhP6cE469HqYHMaU8IIB1vaMh75oDDgW6QBgHRqpD5Dukf1ixAcQs2WSt8O+MJDw7PBeSJrvE0roOMyfAw8UkQaJMeG2jmGc0o0/Z/1LGexAgMBAAGjTzBNMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgWgMBQGA1UdEQQNMAuCCWxvY2FsaG9zdDAdBgNVHQ4EFgQU/VeBoUA0oYF9C7cMKA6UCu44tIQwDQYJKoZIhvcNAQELBQADggEBAIkve4hyMspw+6tfcPs3sNVgYctH+ORlhu12+ft8Wtoln/qoMx2LMd6157fL7dQMyjGnrYLL9j8/lnsF4PTRQlvKPW9WqT0kqi4wcokcJ9xVXGiO/uUQQR5qGi3UPyqZI376VG3Zj9nqBj9XcghUPgvpVq/aVBHkQfHnvme9SFryVu1mSmDIowwI2VHUWNGuKc/pQv2AnIO9MNsLIii2JFTPBMRpqEwLbF3qrlTplPRI382wAGMEcv5qUvkuPvz5VNEQW4v6kPMZW4XzFjy/c9F/IwF9VqsSaxmQUgQT8zMjVggI/v0PHh1nxVNH8/FIzKnL6JZr1o+EPk1Gbi1HxcI=</X509Certificate>
+      <X509IssuerSerial>
+        <X509IssuerName>C=BR
+ST=Brasil
+L=Brasilia
+O=Teste SPI
+OU=Desenvolvimento
+CN=Teste Assinatura XML SPI
+emailAddress=teste@example.com</X509IssuerName>
+        <X509SerialNumber>7CA4F32CCDE67B6D6948E0824A1ED23AACDB0CC0</X509SerialNumber>
+      </X509IssuerSerial>
+    </X509Data></KeyInfo></Signature></Sgntr>
+    </AppHdr>
+    <Document Id="document-id">
+        <PmtRtr>
+            <GrpHdr>
+                <MsgId>M00038166co2iHsLdD3pRWB1Hja91CYw</MsgId>
+                <CreDtTm>2025-10-31T15:51:11.499Z</CreDtTm>
+                <NbOfTxs>1</NbOfTxs>
+                <SttlmInf>
+                    <SttlmMtd>CLRG</SttlmMtd>
+                </SttlmInf>
+            </GrpHdr>
+            <TxInf>
+                <RtrId>D00038166202510311251JkGiNwnu9z5</RtrId>
+                <OrgnlEndToEndId>E99999010202510311251cWva5cY07oY</OrgnlEndToEndId>
+                <RtrdIntrBkSttlmAmt Ccy="BRL">1000.00</RtrdIntrBkSttlmAmt>
+                <SttlmPrty>HIGH</SttlmPrty>
+                <ChrgBr>SLEV</ChrgBr>
+                <RtrRsnInf>
+                    <Rsn>
+                        <Cd>BE08</Cd>
+                    </Rsn>
+                    <AddtlInf>Falha operacional do PSP do pagador</AddtlInf>
+                </RtrRsnInf>
+                <OrgnlTxRef>
+                    <RmtInf>
+                        <Ustrd>Devolução de pagamento</Ustrd>
+                    </RmtInf>
+                    <DbtrAgt>
+                        <FinInstnId>
+                            <ClrSysMmbId>
+                                <MmbId>99999010</MmbId>
+                            </ClrSysMmbId>
+                        </FinInstnId>
+                    </DbtrAgt>
+                    <CdtrAgt>
+                        <FinInstnId>
+                            <ClrSysMmbId>
+                                <MmbId>00038166</MmbId>
+                            </ClrSysMmbId>
+                        </FinInstnId>
+                    </CdtrAgt>
+                </OrgnlTxRef>
+            </TxInf>
+        </PmtRtr>
+    </Document>
+</Envelope>

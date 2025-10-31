@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
+           targetNamespace='https://www.bcb.gov.br/pi/pacs.002/1.14'
+           xmlns='https://www.bcb.gov.br/pi/pacs.002/1.14'
+           elementFormDefault='qualified'>
+    <xs:element name="Envelope" type="SPIEnvelopeMessage"/>
+    <xs:complexType name="SPIEnvelopeMessage">
+        <xs:sequence>
+            <xs:element name="AppHdr" type="SPI.head.001.001.01"/>
+            <xs:element name="Document" type="SPI.pacs.002.001.10"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--inicio BAH-->
+    <xs:complexType name="SPI.head.001.001.01">
+        <xs:sequence>
+            <xs:element name="Fr" type="Party9Choice"/>
+            <xs:element name="To" type="Party9Choice"/>
+            <xs:element name="BizMsgIdr" type="MsgIdType"/>
+            <xs:element name="MsgDefIdr" type="Max35Text"/>
+            <xs:element name="CreDt" type="ISONormalisedDateTime"/>
+            <xs:element name="Sgntr" type="SignatureEnvelope"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+            <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FinancialInstitutionIdentification8">
+        <xs:sequence>
+            <xs:element name="Othr" type="GenericFinancialIdentification1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="GenericFinancialIdentification1">
+        <xs:sequence>
+            <xs:element name="Id" type="ISPBType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="ISONormalisedDateTime">
+        <xs:restriction base="xs:dateTime">
+            <xs:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ISPBType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="8"/>
+            <xs:pattern value="[0-9A-Z]{8}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Max35Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="35"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="MsgIdType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+            <xs:pattern value="[M][0-9A-Z]{8}[a-zA-Z0-9]{23}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="Party9Choice">
+        <xs:choice>
+            <xs:element name="FIId" type="BranchAndFinancialInstitutionIdentification5"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="SignatureEnvelope">
+        <xs:sequence>
+            <xs:any namespace="http://www.w3.org/2000/09/xmldsig#"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--fim BAH-->
+    <!--inicio ISO-->
+    <xs:complexType name="SPI.pacs.002.001.10">
+        <xs:sequence>
+            <xs:element name="FIToFIPmtStsRpt" type="FIToFIPaymentStatusReportV10"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DateAndDateTime2Choice">
+        <xs:choice>
+            <xs:element name="DtTm" type="ISONormalisedDateTime"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:simpleType name="EndToEndIdType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+            <xs:pattern value="[E][0-9A-Z]{8}[0-9]{4}[0-1][0-9][0-3][0-9][0-2][0-9][0-5][0-9][a-zA-Z0-9]{11}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ExternalPaymentTransactionStatus1Code">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACCC"/>
+            <xs:enumeration value="ACSC"/>
+            <xs:enumeration value="ACSP"/>
+            <xs:enumeration value="RJCT"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ExternalStatusReason1Code">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AB03"/>
+            <xs:enumeration value="AB09"/>
+            <xs:enumeration value="AB11"/>
+            <xs:enumeration value="AC03"/>
+            <xs:enumeration value="AC06"/>
+            <xs:enumeration value="AC07"/>
+            <xs:enumeration value="AC14"/>
+            <xs:enumeration value="AG03"/>
+            <xs:enumeration value="AG12"/>
+            <xs:enumeration value="AG13"/>
+            <xs:enumeration value="AGNT"/>
+            <xs:enumeration value="AM01"/>
+            <xs:enumeration value="AM02"/>
+            <xs:enumeration value="AM04"/>
+            <xs:enumeration value="AM09"/>
+            <xs:enumeration value="AM12"/>
+            <xs:enumeration value="AM18"/>
+            <xs:enumeration value="BE01"/>
+            <xs:enumeration value="BE05"/>
+            <xs:enumeration value="BE15"/>
+            <xs:enumeration value="BE17"/>
+            <xs:enumeration value="CH11"/>
+            <xs:enumeration value="CH16"/>
+            <xs:enumeration value="CN01"/>
+            <xs:enumeration value="DS04"/>
+            <xs:enumeration value="DS0G"/>
+            <xs:enumeration value="DS27"/>
+            <xs:enumeration value="DT02"/>
+            <xs:enumeration value="DT05"/>
+            <xs:enumeration value="DUPL"/>
+            <xs:enumeration value="ED05"/>
+            <xs:enumeration value="FF07"/>
+            <xs:enumeration value="FF08"/>
+            <xs:enumeration value="FRAD"/>
+            <xs:enumeration value="MD01"/>
+            <xs:enumeration value="RC09"/>
+            <xs:enumeration value="RC10"/>
+            <xs:enumeration value="RR04"/>
+            <xs:enumeration value="SL02"/>
+            <xs:enumeration value="UPAY"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="FIToFIPaymentStatusReportV10">
+        <xs:sequence>
+            <xs:element name="GrpHdr" type="GroupHeader91"/>
+            <xs:element maxOccurs="unbounded" name="TxInfAndSts" type="PaymentTransaction110"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="GroupHeader91">
+        <xs:sequence>
+            <xs:element name="MsgId" type="MsgIdType"/>
+            <xs:element name="CreDtTm" type="ISONormalisedDateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="ISODate">
+        <xs:restriction base="xs:date"/>
+    </xs:simpleType>
+    <xs:simpleType name="Max105Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="105"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="OrgnlInstrIdType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+            <xs:pattern value="[E|D][0-9A-Z]{8}[0-9]{4}[0-1][0-9][0-3][0-9][0-2][0-9][0-5][0-9][a-zA-Z0-9]{11}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="OriginalTransactionReference28">
+        <xs:sequence>
+            <xs:element name="IntrBkSttlmDt" type="ISODate"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PaymentTransaction110">
+        <xs:sequence>
+            <xs:element name="OrgnlInstrId" type="OrgnlInstrIdType"/>
+            <xs:element name="OrgnlEndToEndId" type="EndToEndIdType"/>
+            <xs:element name="TxSts" type="ExternalPaymentTransactionStatus1Code"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="StsRsnInf" type="StatusReasonInformation12"/>
+            <xs:element minOccurs="0" name="FctvIntrBkSttlmDt" type="DateAndDateTime2Choice"/>
+            <xs:element minOccurs="0" name="OrgnlTxRef" type="OriginalTransactionReference28"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="StatusReason6Choice">
+        <xs:choice>
+            <xs:element name="Cd" type="ExternalStatusReason1Code"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="StatusReasonInformation12">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="Rsn" type="StatusReason6Choice"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="AddtlInf" type="Max105Text"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--fim ISO-->
+</xs:schema>

@@ -1,0 +1,96 @@
+Mensagem ISO 20022,Domínio para o Brasil,,,,
+Message Element,Código,Nome,Descrição,Comentários,Fonte de referência
+"
+<TxInfAndSts> TransactionInformationAndStatus
+        <TxSts> TransactionStatus
+
+",ACCC,AcceptedSettlementCompleted,Settlement on the creditor's account has been completed.,Notificação do SPI da conclusão da transação ao participante do usuário recebedor.,ExternalPaymentTransactionStatus1Code
+,ACSC,AcceptedSettlementCompletedDebitorAccount,"Settlement completed.
+Usage : this can be used by a Market Infrastructure reporting to Infrastructure Participant or an Account Servicer to Account Owner to report that the transaction account entry has been completed.",Notificação do SPI da conclusão da transação ao participante do usuário pagador.,
+,ACSP,AcceptedSettlementInProcess,All preceding checks such as technical validation and customer profile were successful and therefore the payment instruction has been accepted for execution.,Instrução de pagamento aceita após as validações realizadas pelo participante do usuário pagador.,
+,RJCT,Rejected,Payment instruction has been rejected.,Instrução de pagamento rejeitada pelo participante do usuário pagador.,
+"
+<TxInfAndSts> TransactionInformationAndStatus
+        <StsRsnInf> StatusReasonInformation
+                <Rsn> Reason
+                                <Cd> Code
+
+",AB03,AbortedSettlementTimeout,Settlement aborted due to timeout.   ,"Liquidação da transação interrompida devido a timeout no SPI.
+Participante que gera o Erro: SPI",ExternalStatusReason1Code
+,AB09,ErrorCreditorAgent,Transaction stopped due to error at the Creditor Agent.,"Transação interrompida devido a erro no participante do usuário recebedor.
+Participante que gera o Erro: Participante do usuário recebedor",
+,AB11,TimeoutDebtorAgent,Transaction stopped due to timeout at the Debtor Agent.,"Timeout do participante emissor da ordem de pagamento.
+Participante que gera o Erro: SPI",
+,AC03,InvalidCreditorAccountNumber,Creditor account number invalid or missing,"Número da agência e/ou conta transacional do usuário recebedor inexistente ou inválido.
+Participante que gera o Erro: Participante do usuário recebedor",
+,AC06,BlockedAccount,"Account specified is blocked, prohibiting posting of transactions against it.","Conta transacional do usuário recebedor encontra-se bloqueada.
+Participante que gera o Erro: Participante do usuário recebedor",
+,AC07,ClosedCreditorAccountNumber,Creditor account number closed,"Número da conta transacional do usuário recebedor encerrada.
+Participante que gera o Erro: Participante do usuário recebedor",
+,AC14,InvalidCreditorAccountType,Creditor account type missing or invalid,"Tipo incorreto para a conta transacional do usuário recebedor.
+Participante que gera o Erro: Participante do usuário recebedor",
+,AG03,TransactionNotSupported,Transaction type not supported/authorized on this account,"Tipo de transação não é suportado/autorizado na conta transacional do usuário recebedor. Exemplo: transferência para conta salário.
+Participante que gera o Erro: Participante do usuário recebedor",
+,AG12,NotAllowedBookTransfer,Payment orders made by transferring funds from one account to another at the same financial institution (bank or payment institution) are not allowed.,"Não é permitida ordem de pagamento/devolução no SPI cujos recursos sejam transferidos de uma conta transacional para outra em uma mesma instituição participante ou entre participantes que utilizem o serviço de liquidação de um mesmo participante liquidante no SPI (booktransfer).
+Participante que gera o Erro: SPI",
+,AG13,ForbiddenReturnPayment,Returned payments derived from previously returned transactions are not allowed.,"Não é permitido devolver a devolução de um pagamento instantâneo.
+Participante que gera o Erro: SPI",
+,AGNT,IncorrectAgent,Agent in the payment workflow is incorrect,"Participante direto não é liquidante do participante do usuário pagador.
+Participante que gera o Erro: SPI",
+,AM01,ZeroAmount,Specified message amount is equal to zero,"Ordem de pagamento instantâneo com valor zero.
+Participante que gera o Erro: SPI",
+,AM02,NotAllowedAmount,Specific transaction/message amount is greater than allowed maximum,"Ordem de pagamento/devolução em valor que faz superar o limite permitido para o tipo de conta transacional creditada.
+Participante que gera o Erro: Participante do usuário recebedor",
+,AM04,InsufficientFunds,Amount of funds available to cover specified message amount is insufficient.,"Saldo insuficiente na conta PI do participante do usuário pagador.
+Participante que gera o Erro: SPI",
+,AM09,WrongAmount,Amount received is not the amount agreed or expected,"Devolução de pagamento em valor que faz superar o valor da ordem de pagamento instantâneo correspondente.
+Participante que gera o Erro: Participante do usuário recebedor",
+,AM12,InvalidAmount,Amount is invalid or missing,"Divergência entre a somatória dos valores do bloco valorDoDinheiroOuCompra e o campo valor.
+Participante que gera o Erro: SPI",
+,AM18,InvalidNumberOfTransactions,Number of transactions is invalid or missing. Generic usage if cannot specify between group and payment information levels.,"Quantidade de transações inválida.
+Participante que gera o Erro: SPI",
+,BE01,InconsistenWithEndCustomer,Identification of end customer is not consistent with associated account number. (formerly CreditorConsistency).,"CPF/CNPJ do usuário recebedor não é consistente com o titular da conta transacional especificada.
+Participante que gera o Erro: Participante do usuário recebedor",
+,BE05,UnrecognisedInitiatingParty,Party who initiated the message is not recognised by the end customer,"CNPJ do iniciador de pagamento não se encontra cadastrado no arranjo Pix.
+Participante que gera o Erro: SPI",
+,BE15,InvalidIdentificationCode,Identification code missing or invalid.,"Preenchimento incorreto do campo idConciliacaoRecebedor.
+Participante que gera o erro: Participante do usuário recebedor.",
+,BE17,InvalidCreditorIdentificationCode,Creditor or Ultimate Creditor identification code missing or invalid,"QR Code rejeitado pelo participante do usuário recebedor.
+Participante que gera o Erro: Participante do usuário recebedor",
+,CH11,CreditorIdentifierIncorrect,Value in Creditor Identifier is incorrect,"CPF/CNPJ do usuário recebedor incorreto.
+Participante que gera o Erro: Participante do usuário recebedor",
+,CH16,ElementContentFormallyIncorrect,Content is incorrect,"Preenchimento do conteúdo da mensagem incorreto ou incompatível com as regras de negócio.
+Participante que gera o Erro: SPI",
+,CN01,AuthorisationCancelled,Authorisation is cancelled.,"Agendamento de pagamento recorrente cancelado com statusDoCancelamento igual a ""ACCR (confirmado)"". Participante que gera o Erro: Participante do usuário recebedor",
+,DS04,OrderRejected,The order was rejected by the bank side (for reasons concerning content),"Ordem rejeitada pelo participante do usuário recebedor.
+Participante que gera o Erro: Participante do usuário recebedor",
+,DS0G,NotAllowedPayment,Signer is not allowed to sign this operation type.,"Participante que assinou a mensagem não é autorizado a realizar a operação na conta PI debitada. No caso em que o participante que assinou a mensagem não é o titular da conta PI debitada nem é o liquidante no SPI do participante do usuário pagador.
+Participante que gera o Erro: SPI",
+,DS27,UserNotYetActivated,The user is not yet activated,"Participante não se encontra cadastrado ou ainda não iniciou a operação no SPI.
+Participante que gera o Erro: SPI",
+,DT02,InvalidCreationDate,"Invalid creation date and time in Group Header (eg, historic date)","Data e Hora do envio da mensagem inválida
+Participante que gera o Erro: SPI",
+,DT05,InvalidCutOffDate,"Associated message, payment information block or transaction was received after agreed processing cut-off date, i.e., date in the past.","Transação extrapola o prazo máximo para devolução de pagamento instantâneo regulamentado pelo arranjo Pix.
+Participante que gera o Erro: SPI",
+,DUPL,DuplicatePayment,Payment is a duplicate of another payment,"Pagamento efetuado em duplicidade nos casos em que as ordens de pagamento possuem IdConciliacaoDoRecebedor iguais para um mesmo usuário recebedor. É permitido que duas cobranças tenham o mesmo IdConciliacaoDoRecebedor desde que correspondam a usuários recebedores diferentes.
+Participante que gera o erro: Participante do usuário recebedor.",
+,ED05,SettlementFailed,Settlement of the transaction has failed,"Erro no processamento do pagamento instantâneo  (erro genérico).
+Participante que gera o Erro: SPI / Participante do usuário recebedor",
+,FF07,InvalidPurpose,Purpose is missing or invalid.,"Inconsistência entre a finalidade da transação e o preenchimento do bloco elementos Structured <Strd>.
+Participante que gera o Erro: SPI",
+,FF08,InvalidEndToEndId,End to End Id missing or invalid,"Identificador da operação mal formatado.
+Participante que gera o Erro: SPI",
+,FRAD,FraudulentOrigin,Cancellation requested following a transaction that was originated fraudulently. The use of the FraudulentOrigin code should be governed by jurisdictions.,"Ordem de pagamento rejeitada por fundada suspeita de fraude. 
+Participante que gera o erro: Participante do usuário recebedor",
+,MD01,NoMandate,No Mandate,"ISPB do participante facilitador de serviço Pix Saque ou Pix Troco inexistente.
+Participante que gera o Erro: SPI",
+,RC09,InvalidDebtorClearingSystemMemberIdentifier,Debtor ClearingSystemMember identifier is invalid or missing,"ISPB do participante do usuário pagador inválido ou inexistente.
+Participante que gera o Erro: SPI",
+,RC10,InvalidCreditorClearingSystemMemberIdentifier,Creditor ClearingSystemMember identifier is invalid or missing,"ISPB do participante do usuário recebedor inválido ou inexistente. 
+Participante que gera o Erro: SPI",
+,RR04,Regulatory Reason,Regulatory Reason,"Ordem de pagamento em que o usuário pagador é sancionado por resolução do Conselho de Segurança das Nações Unidas (CSNU). Nos casos em que o usuário recebedor for o sancionado, a ordem de pagamento não deve ser rejeitada.
+Participante que gera o Erro: Participante do usuário recebedor",
+,SL02,SpecificServiceOfferedByCreditorAgent,Due to specific service offered by the Creditor Agent,"A transação referenciada na mensagem de devolução (pacs.004) original não está relacionada aos serviços de Pix Saque ou Pix Troco.
+Participante que gera o Erro: Participante do usuário recebedor",
+,UPAY,UnduePayment,Payment is not justified,"Pagamento é indevido por ausência de recorrência válida/ativa. 
+Participante que gera o Erro: Participante do usuário recebedor",
