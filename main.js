@@ -9,7 +9,7 @@
  *   node main.js --xsd --sign # Generate with XSD validation and signing enabled
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -35,6 +35,11 @@ const PSP_RECEBEDOR = '00038166'; // PSP do usuário recebedor
 const SPI_ISPB = '00038166'; // SPI system ISPB
 
 const OUTPUT_DIR = join(__dirname, 'out');
+
+// Create output directory if it doesn't exist
+if (!existsSync(OUTPUT_DIR)) {
+  mkdirSync(OUTPUT_DIR, { recursive: true });
+}
 
 // Parse command line arguments
 const args = process.argv.slice(2);
